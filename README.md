@@ -1,4 +1,4 @@
-# Code duplication detecter
+# Code duplication detector
 
 ## How to run the tests
 First, make sure you have added the package to the Python path of your machine.
