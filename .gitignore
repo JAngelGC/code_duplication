@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+*.env
+ENV/
+env.bak/
+env/
+venv.bak/
+venv/
+.venv/
+pip-wheel-metadata/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+
+# Logs and Databases
+*.log
+*.sqlite3
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.rar
+*.tar.gz
+*.7z
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Misc
+*.bak
+*.swp
+*~
