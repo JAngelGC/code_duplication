@@ -1,3 +1,10 @@
+"""
+    matcher.py
+
+    This module contains functions to print match percentage
+    of two given files.
+"""
+
 from difflib import SequenceMatcher
 from lexer.lexer import Lexer
 from pythonparser.lexer import Token
@@ -6,22 +13,28 @@ from pythonparser import source
 
 def print_match_plain_text(file_path_1: str, file_path_2: str):
     """
+    Prints match percentage of two plain texts, and also prints
+    the lines that are very similar
+
+    Input:
+        file_path_1: Path of the file 1
+        file_path_2: Path of the file 2
     """
     content_file_1: str = _read_file(file_path_1)
     content_file_2: str = _read_file(file_path_2)
 
-    match = SequenceMatcher(None, content_file_1, content_file_2)
+    match: SequenceMatcher = SequenceMatcher(None, content_file_1, content_file_2)
     match_percentage: int = int(match.ratio() * 100)
 
     print(f"Matching {file_path_1} to {file_path_2}")
     print(f"Match percentage is {match_percentage}%")
-    print_similar_lines(content_file_1, content_file_2)
+    _print_similar_lines(content_file_1, content_file_2)
 
 
 def print_match_preprocesses_text(file_path_1: str, file_path_2: str):
     """
     Prints match percentage of similarity between files 'file_path_1' and
-    'file_path_2'
+    'file_path_2' after a tokenization process.
 
     Input:
         file_path_1: Absolute path of file 1
@@ -43,10 +56,10 @@ def print_match_preprocesses_text(file_path_1: str, file_path_2: str):
 
     print(f"Matching {file_path_1} to {file_path_2}")
     print(f"Match percentage is {match_percentage}%")
-    print_similar_lines(content_file_1, content_file_2)
+    _print_similar_lines(content_file_1, content_file_2)
 
 
-def print_similar_lines(file_content_1: str, file_content_2: str):
+def _print_similar_lines(file_content_1: str, file_content_2: str):
     """
     Given 'file_content_1' and 'file_content_2', it prints the lines
     that are in both files.

@@ -1,7 +1,7 @@
 """
-    test_duplication.py
+    matcher.py
 
-    In the future, pytest will be used
+    This module contains tests match two different files.
 """
 
 from matcher.matcher import print_match_plain_text, print_match_preprocesses_text

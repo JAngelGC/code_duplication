@@ -1,7 +1,14 @@
+"""
+    lexer.py
+
+    This module creates a Lexer class to get the tokens of a file
+    and replace identifiers for a common value.
+"""
+
+import re
 from pythonparser import source, lexer, diagnostic
 from pathlib import Path
 from typing import Union, List
-import re
 
 
 class Lexer:
@@ -14,11 +21,11 @@ class Lexer:
         Returns:
             tokens: Array of tokens of the 'filepath'
         """
-        buf = None
+        buf: source.Buffer = None
         with open(filepath) as f:
             buf = source.Buffer(f.read(), f.name)
 
-        engine = diagnostic.Engine()
+        engine: diagnostic.Engine = diagnostic.Engine()
 
         tokens: List[lexer.Token] = []
         for token in lexer.Lexer(buf, (3, 4), engine):
@@ -35,8 +42,8 @@ class Lexer:
             tokens: List of tokens
             buf: Buffer containing the plain text of the tokens
         """
-        rewriter = source.Rewriter(buf)
-        in_quot  = False
+        rewriter: source.Rewriter = source.Rewriter(buf)
+        in_quot: bool  = False
         replace  = { "'": "\"", "'''": "\"\"\"" }
 
         for token in tokens:
