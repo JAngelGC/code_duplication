@@ -4,15 +4,12 @@ from typing import Union, List
 import re
 
 
-
 class Lexer:
 
     @staticmethod
     def get_tokens(filepath: Union[str, Path]):
         """
-        Given a 'filepath', it returns an array of the tokens
-        New: Given a 'filepath', it returns an string of the content of the
-        file with its identifiers replaced.
+        Given a 'filepath', it returns an array of its tokens
 
         Returns:
             tokens: Array of tokens of the 'filepath'
@@ -29,15 +26,23 @@ class Lexer:
         
         return tokens, buf
 
-    def replace_ident(tokens, buf):
+    def replace_ident(tokens: List[lexer.Token], buf: source.Buffer):
+        """
+        Given a list of tokens and a buffer, it replaces all identifieres
+        for a common string 'ident'
+
+        Input:
+            tokens: List of tokens
+            buf: Buffer containing the plain text of the tokens
+        """
         rewriter = source.Rewriter(buf)
         in_quot  = False
         replace  = { "'": "\"", "'''": "\"\"\"" }
 
         for token in tokens:
-            # print(token)
             source_ = token.loc.source()
             
+            # replace identifiers fr 'ident'
             if token.kind == "ident":
                 rewriter.replace(token.loc, "ident")
 
